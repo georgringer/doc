@@ -1,0 +1,36 @@
+{
+	"name": "georgringer/doc",
+	"type": "typo3-cms-extension",
+	"description": "Render documentation based on markdown files directly in the backend",
+	"keywords": [
+		"TYPO3",
+		"documentation",
+		"markdown"
+	],
+	"homepage": "https://ringer.it",
+	"authors": [
+		{
+			"name": "Georg Ringer",
+			"role": "Developer"
+		}
+	],
+	"license": [
+		"GPL-2.0-or-later"
+	],
+	"require": {
+		"typo3/cms-core": "^9 || ^10 || ^11"
+	},
+	"autoload": {
+		"psr-4": {
+			"GeorgRinger\\Doc\\": "Classes"
+		}
+	},
+	"replace": {
+		"typo3-ter/doc": "self.version"
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "doc"
+		}
+	}
+}
