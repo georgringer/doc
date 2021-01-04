@@ -34,4 +34,4 @@ As seen in the screenshot below, the following configuration options are availab
 > Without any documentation, this extension is not useful at all :)
 
 Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`.
-See also the [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) as there are some nice features available.
+See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
