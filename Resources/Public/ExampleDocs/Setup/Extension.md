@@ -1,19 +1,20 @@
 # Using this extension
 
-Using this extension is fairly easy.
+Get started documenting your custom extension. Write directly in your IDE as you build. 
 
 ## Write the documentation
 
 ?> Without any documentation, this extension is not useful at all :)
 
-Checkout the sample documentation inside `EXT:doc/Resources/Public/ExampleDocs`
-and also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
+Describe what your extension does, how to use it and how to maintain it. Once you have some content, create structure by adding links to the sidebar navigation.
+Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`. 
+See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
 
 The following 3 special files are important:
 
-- `Home.md`: This file is uses as homepage.
-- `_sidebar.md`: Sidebar on the left. Put all the important links here
-- `_navbar.md`: Navigation on the top right
+- `Home.md`: This file is used as homepage.
+- `_sidebar.md`: Sidebar on the left. Put all the important links here.
+- `_navbar.md`: Navigation on the top right.
 
 
 ## Setup the extension
