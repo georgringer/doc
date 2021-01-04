@@ -6,7 +6,10 @@ Get started documenting your custom extension. Write directly in your IDE as you
 
 ?> Without any documentation, this extension is not useful at all :)
 
-Describe what your extension does, how to use it and how to maintain it. Once you have some content, create structure by adding links to the sidebar navigation.
+Describe what your extension does, how to use it and how to maintain it. You could include descriptions of 
+content elements, release notes, instructions for raising issues or anything else that needs to be documented. 
+Once you have some content, create structure by adding links to the sidebar navigation.
+
 Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`. 
 See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
 
