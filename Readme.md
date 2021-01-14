@@ -1,8 +1,12 @@
 # TYPO3 Extension `doc`
 
-This extensions provides a new module below *Help* called *Project Documentation* to deliver your documentation to your clients and also for yourself.
+This extension adds an option to the *Help* menu called *Project Documentation*, that lets you deliver documentation about your project from within TYPO3 CMS backend.
 
-It is based on Markdown which makes it easy to write it all down during or after creating custom extensions, content elements, release notes or anything which needs to be documented and should not be forgotten.
+![Help](Resources/Public/Images/Help.png)
+
+It is based on Markdown. This makes it easy to write documentation while you're building a custom extension, 
+or afterward. You could include descriptions of content elements, release notes, instructions for raising issues
+or anything else that needs to be documented.
 
 The JS library [docsify](https://docsify.js.org/) transforms **markdown files** into beautiful HTML content.
 
@@ -30,5 +34,5 @@ As seen in the screenshot below, the following configuration options are availab
 
 > Without any documentation, this extension is not useful at all :)
 
-Checkout the sample documentation inside `EXT:doc/Resources/Public/ExampleDocs`
-and also the **Markdown Cheatsheet** as there are some nice features available.
+Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`.
+See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
