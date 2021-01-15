@@ -17,7 +17,7 @@
 <script>
     var docRootPath = '{docRoothPath}';
     window.$docsify = {
-        name: 'Documentation',
+        name: '{f:if(conditon: documentationName, then: \'{documentationName}\', else: \'Documentation\')}',
         themeColor: '#1e46b9',
         basePath: docRootPath,
         homepage: 'Home.md',

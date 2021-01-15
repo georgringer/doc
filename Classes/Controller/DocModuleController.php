@@ -34,6 +34,8 @@ class DocModuleController
             throw new \UnexpectedValueException('Documentation root path not set', 1609235458);
         }
 
+        $documentationName = $settings['documentationName'] ?? '';
+
         $publicResourcesPath = '../../' . PathUtility::getRelativePathTo(ExtensionManagementUtility::extPath('doc')) . 'Resources/Public/docsify/';
 
 
@@ -43,6 +45,7 @@ class DocModuleController
         $view->assignMultiple([
             'path' => $publicResourcesPath,
             'docRoothPath' => $docRootPath,
+            'documentationName' => $documentationName,
             'darkMode' => $settings['darkMode'] ?? false
         ]);
         return $view;

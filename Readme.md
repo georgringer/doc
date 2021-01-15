@@ -26,6 +26,7 @@ Switch to **Install Tool/Settings** and customize the global configuration.
 As seen in the screenshot below, the following configuration options are available:
 
 * `Documentation Root Path`: Define the path to the Markdown files
+* `Documentation Name`: Documentation name as it appears in the sidebar
 * `Dark mode`: Enable the dark mode
 
 ![Extension Configuration](Resources/Public/ExampleDocs/_img/ExtensionConfiguration.png)
@@ -35,4 +36,4 @@ As seen in the screenshot below, the following configuration options are availab
 > Without any documentation, this extension is not useful at all :)
 
 Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`.
-See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
+See also the [Markdown Cheatsheet](Resources/Public/ExampleDocs/Setup/Markdown.md) as there are some nice features available.
