@@ -34,6 +34,7 @@ Switch to **Install Tool/Settings** and customize the global configuration.
 As seen in the screenshot below, the following configuration options are available:
 
 * `Documentation Root Path`: Define the path to the Markdown files
+* `Documentation Name`: Documentation name as it appears in the sidebar
 * `Dark mode`: Enable the dark mode
 
 ![Extension Configuration](../_img/ExtensionConfiguration.png ':size=50%')
