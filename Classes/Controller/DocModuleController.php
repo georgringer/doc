@@ -5,6 +5,7 @@ namespace GeorgRinger\Doc\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -38,12 +39,15 @@ class DocModuleController
 
         $publicResourcesPath = '../../' . PathUtility::getRelativePathTo(ExtensionManagementUtility::extPath('doc')) . 'Resources/Public/docsify/';
 
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $uri = $uriBuilder->buildUriFromRoute('ajax_doc_serve');
 
         $templatePathAndFilename = GeneralUtility::getFileAbsFileName('EXT:doc/Resources/Private/Templates/Module.html');
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename($templatePathAndFilename);
         $view->assignMultiple([
             'path' => $publicResourcesPath,
+            'prefix' => $uri,
             'docRoothPath' => $docRootPath,
             'documentationName' => $documentationName,
             'darkMode' => $settings['darkMode'] ?? false
