@@ -37,3 +37,5 @@ As seen in the screenshot below, the following configuration options are availab
 
 Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Private/ExampleDocs`.
 See also the [Markdown Cheatsheet](Resources/Private/ExampleDocs/Setup/Markdown.md) as there are some nice features available.
+
+When you create your own documentation make sure to put the folder with your markdown files in `Resources/Private`. Otherwise your markdown files may be publicly accessible.

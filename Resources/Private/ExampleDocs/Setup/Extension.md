@@ -13,6 +13,8 @@ Once you have some content, create structure by adding links to the sidebar navi
 Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Private/ExampleDocs`.
 See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
 
+When you create your own documentation make sure to put the folder with your markdown files in `Resources/Private`. Otherwise your markdown files may be publicly accessible.
+
 The following 3 special files are important:
 
 - `Home.md`: This file is used as homepage.
