@@ -29,11 +29,13 @@ As seen in the screenshot below, the following configuration options are availab
 * `Documentation Name`: Documentation name as it appears in the sidebar
 * `Dark mode`: Enable the dark mode
 
-![Extension Configuration](Resources/Public/ExampleDocs/_img/ExtensionConfiguration.png)
+![Extension Configuration](Resources/Private/ExampleDocs/_img/ExtensionConfiguration.png)
 
 ## Write the documentation
 
 > Without any documentation, this extension is not useful at all :)
 
-Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`.
-See also the [Markdown Cheatsheet](Resources/Public/ExampleDocs/Setup/Markdown.md) as there are some nice features available.
+Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Private/ExampleDocs`.
+See also the [Markdown Cheatsheet](Resources/Private/ExampleDocs/Setup/Markdown.md) as there are some nice features available.
+
+When you create your own documentation make sure to put the folder with your markdown files in `Resources/Private`. Otherwise your markdown files may be publicly accessible.

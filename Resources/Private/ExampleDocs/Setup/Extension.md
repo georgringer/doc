@@ -10,8 +10,10 @@ Describe what your extension does, how to use it and how to maintain it. You cou
 content elements, release notes, instructions for raising issues or anything else that needs to be documented. 
 Once you have some content, create structure by adding links to the sidebar navigation.
 
-Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Public/ExampleDocs`. 
+Check out the sample documentation included in this extension which you can use as a guide `EXT:doc/Resources/Private/ExampleDocs`.
 See also the [Markdown Cheatsheet](Setup/Markdown.md) as there are some nice features available.
+
+When you create your own documentation make sure to put the folder with your markdown files in `Resources/Private`. Otherwise your markdown files may be publicly accessible.
 
 The following 3 special files are important:
 
