@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+	<file t3:id="1609228987" source-language="en" datatype="plaintext" original="EXT:doc/Resources/Private/Language/locallang.xlf" product-name="doc">
+		<header/>
+		<body>
+			<trans-unit id="widget.title" resname="widget.title">
+				<source>Project Documentation</source>
+			</trans-unit>
+			<trans-unit id="widget.description" resname="widget.description">
+				<source>Add a shortcut to the project documentation.</source>
+			</trans-unit>
+			<trans-unit id="widget.text" resname="widget.text">
+				<source>The project documentation is the first place to go for all questions about this TYPO3 installation.</source>
+			</trans-unit>
+			<trans-unit id="widget.buttonText" resname="widget.buttonText">
+				<source>Show Project Documentation</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
