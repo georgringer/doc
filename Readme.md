@@ -4,7 +4,11 @@ This extension adds an option to the *Help* menu called *Project Documentation*,
 
 ![Help](Resources/Public/Images/Help.png)
 
-It is based on Markdown. This makes it easy to write documentation while you're building a custom extension, 
+The extension also ships with a widget for the TYPO3 Dashboad extension to give you quick access to your project documentation.
+
+![Widget](Resources/Public/Images/Widget.png)
+
+The documentation is based on Markdown. This makes it easy to write documentation while you're building a custom extension,
 or afterward. You could include descriptions of content elements, release notes, instructions for raising issues
 or anything else that needs to be documented.
 
