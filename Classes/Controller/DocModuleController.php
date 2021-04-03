@@ -40,15 +40,14 @@ class DocModuleController
         $publicResourcesPath = '../../' . PathUtility::getRelativePathTo(ExtensionManagementUtility::extPath('doc')) . 'Resources/Public/docsify/';
 
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-        $uri = $uriBuilder->buildUriFromRoute('ajax_doc_serve');
+        $uri = $uriBuilder->buildUriFromRoute('ajax_doc_serve', ['path' => $docRootPath]);
 
         $templatePathAndFilename = GeneralUtility::getFileAbsFileName('EXT:doc/Resources/Private/Templates/Module.html');
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename($templatePathAndFilename);
         $view->assignMultiple([
             'path' => $publicResourcesPath,
-            'prefix' => $uri,
-            'docRoothPath' => $docRootPath,
+            'docRoothPath' => $uri,
             'documentationName' => $documentationName,
             'darkMode' => $settings['darkMode'] ?? false
         ]);
