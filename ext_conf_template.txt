@@ -4,5 +4,5 @@ documentationRootPath = /typo3conf/ext/doc/Resources/Private/ExampleDocs/
 # cat=basic/enable/102; type=input; label=Documentation Name:Documentation name as it appears in the sidebar
 documentationName = Documentation
 
-# cat=basic/enable/103; type=bool; label=Dark mode:If set, the documentation module uses the dark mode
+# cat=basic/enable/103; type=boolean; label=Dark mode:If set, the documentation module uses the dark mode
 darkMode = 0
