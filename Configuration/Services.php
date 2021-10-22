@@ -4,15 +4,17 @@ declare(strict_types=1);
 namespace GeorgRinger\Doc;
 
 use GeorgRinger\Doc\Widgets\Provider\ExtDocButtonProvider;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Dashboard\Dashboard;
 use TYPO3\CMS\Dashboard\Widgets\CtaWidget;
 
-return function (ContainerConfigurator $configurator) {
+return static function (ContainerConfigurator $configurator, ContainerBuilder $containerBuilder) {
     $services = $configurator->services();
 
-    if (ExtensionManagementUtility::isLoaded('dashboard')) {
+    if ($containerBuilder->hasDefinition(Dashboard::class)) {
         $services->set('dashboard.widget.gotoProjectDocumentation')
             ->class(CtaWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
