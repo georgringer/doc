@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  GeorgRinger\Doc\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Widgets/*'
+
+  GeorgRinger\Doc\Controller\DocModuleController:
+    tags: ['backend.controller']

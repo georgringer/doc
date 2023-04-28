@@ -10,12 +10,23 @@ use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 
-class DocModuleController
-{
 
+class DocModuleController implements ControllerInterface
+
+{
+    /**
+     * @param ServerRequestInterface $request the current request
+     * @return ResponseInterface the response with the content
+     */
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
+    {
+        $this->mainAction($request);
+    }
 
     /**
      * @param ServerRequestInterface $request the current request
@@ -29,7 +40,9 @@ class DocModuleController
 
     private function getStandaloneView(): StandaloneView
     {
+
         $settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('doc');
+
         $docRootPath = $settings['documentationRootPath'] ?? '';
         if (!$docRootPath) {
             throw new \UnexpectedValueException('Documentation root path not set', 1609235458);
@@ -52,5 +65,11 @@ class DocModuleController
             'darkMode' => $settings['darkMode'] ?? false
         ]);
         return $view;
+    }
+
+    public function processRequest(RequestInterface $request): ResponseInterface
+    {
+        $view = $this->getStandaloneView();
+        return new HtmlResponse($view->render());
     }
 }
