@@ -3,9 +3,6 @@
 use GeorgRinger\Doc\Controller\DocModuleController;
 
 
-/**
- * Definitions for modules provided by EXT:examples
- */
 return [
     'doc' => [
         'parent' => 'help',
