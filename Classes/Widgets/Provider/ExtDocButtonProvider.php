@@ -37,7 +37,6 @@ class ExtDocButtonProvider implements ButtonProviderInterface
 
     public function getLink(): string
     {
-        debug('foo');
         if (ExtensionManagementUtility::isLoaded('doc')) {
             return 'javascript:top.goToModule(' . GeneralUtility::quoteJSvalue('help_doc') . ');';
         }
