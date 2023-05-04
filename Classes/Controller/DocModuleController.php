@@ -6,8 +6,11 @@ namespace GeorgRinger\Doc\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\HtmlResponse;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface;
@@ -40,8 +43,7 @@ class DocModuleController implements ControllerInterface
 
     private function getStandaloneView(): StandaloneView
     {
-
-        $settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('doc');
+        $settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('doc');
 
         $docRootPath = $settings['documentationRootPath'] ?? '';
         if (!$docRootPath) {
@@ -50,8 +52,6 @@ class DocModuleController implements ControllerInterface
 
         $documentationName = $settings['documentationName'] ?? 'Documentation';
 
-        $publicResourcesPath = '../../' . PathUtility::getRelativePathTo(ExtensionManagementUtility::extPath('doc')) . 'Resources/Public/docsify/';
-
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
         $uri = $uriBuilder->buildUriFromRoute('ajax_doc_serve', ['path' => $docRootPath]);
 
@@ -59,8 +59,7 @@ class DocModuleController implements ControllerInterface
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename($templatePathAndFilename);
         $view->assignMultiple([
-            'path' => $publicResourcesPath,
-            'docRoothPath' => $uri,
+            'docRootPath' => $uri,
             'documentationName' => $documentationName,
             'darkMode' => $settings['darkMode'] ?? false
         ]);

@@ -10,3 +10,4 @@ services:
 
   GeorgRinger\Doc\Controller\DocModuleController:
     tags: ['backend.controller']
+    public: true
