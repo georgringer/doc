@@ -26,17 +26,19 @@
     <body>
     <div id="app"></div>
     <script>
-        var docRootPath = '{docRoothPath.path}';
-        var documentationName = '{documentationName}';
+        const docRootPath = '{docRootPath.path}'.replace('placeholder','');
+        const themeColor = '{themeColor}';
+        const documentationName = '{documentationName}';
         window.$docsify = {
             name: documentationName,
-            themeColor: '#1e46b9',
+            themeColor: themeColor,
             basePath: docRootPath,
             homepage: 'Home.md',
             loadSidebar: true,
             loadNavbar: false,
             subMaxLevel: 0,
-            autoHeader: false
+            autoHeader: false,
+            auto2top: true,
         }
     </script>
     <script src="{f:uri.resource(path: 'EXT:doc/Resources/Public/docsify/docsify_4.11.6.js')}"></script>

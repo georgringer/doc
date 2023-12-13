@@ -7,30 +7,19 @@ use GuzzleHttp\Psr7\MimeType;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Http\Stream;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
-
 
 class DocServeController
 {
+    protected readonly Array $extensionConfiguration ;
 
-    protected $extensionConfiguration = [];
-
-    public function __construct()
+    public function __construct(ExtensionConfiguration $extensionConfiguration)
     {
-        try {
-            $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('doc');
-        } catch (\Exception $e) {
-            // do nothing
-        }
+        $this->extensionConfiguration = $extensionConfiguration->get('doc');
     }
-
 
     /**
      * @param ServerRequestInterface $request the current request
@@ -38,8 +27,10 @@ class DocServeController
      */
     public function mainAction(ServerRequestInterface $request): ResponseInterface
     {
+        $routing = $request->getAttribute('routing');
+        $fileName = $routing['segment_01'];
         $response = new Response();
-        $file = $this->getFile($request->getQueryParams()['path'] ?? '');
+        $file = $this->getFile($fileName ?? '');
         if ($file) {
             $content = file_get_contents($file);
 
@@ -50,7 +41,7 @@ class DocServeController
                 ->withStatus(200);
 
             $mime = MimeType::fromFilename($file);
-            if ($mime === null && StringUtility::endsWith(strtolower($file), '.md')) {
+            if ($mime === null && str_ends_with(strtolower($file), '.md')) {
                 $mime = 'text/markdown';
             }
             if ($mime) {
@@ -63,10 +54,10 @@ class DocServeController
         return $response;
     }
 
-    private function getFile(string $path): string
+    private function getFile(string $fileName): string
     {
-        $path = PathUtility::getCanonicalPath($path);
-        if (!StringUtility::beginsWith($path, $this->extensionConfiguration['documentationRootPath'] ?? '')) {
+        $path = PathUtility::getCanonicalPath($this->extensionConfiguration['documentationRootPath'] . $fileName);
+        if (!str_starts_with($path, $this->extensionConfiguration['documentationRootPath'] ?? '')) {
             return '';
         }
 
@@ -75,33 +66,11 @@ class DocServeController
             return '';
         }
 
-        $file = Environment::getPublicPath() . $path;
+        $file = GeneralUtility::getFileAbsFileName($path);
         if (!is_file($file)) {
             return '';
         }
 
         return $file;
-    }
-
-    private function getStandaloneView(): StandaloneView
-    {
-        $settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('doc');
-        $docRootPath = $settings['documentationRootPath'] ?? '';
-        if (!$docRootPath) {
-            throw new \UnexpectedValueException('Documentation root path not set', 1609235458);
-        }
-
-        $publicResourcesPath = '../../' . PathUtility::getRelativePathTo(ExtensionManagementUtility::extPath('doc')) . 'Resources/Public/docsify/';
-
-
-        $templatePathAndFilename = GeneralUtility::getFileAbsFileName('EXT:doc/Resources/Private/Templates/Module.html');
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename($templatePathAndFilename);
-        $view->assignMultiple([
-            'path' => $publicResourcesPath,
-            'docRoothPath' => $docRootPath,
-            'darkMode' => $settings['darkMode'] ?? false
-        ]);
-        return $view;
     }
 }
