@@ -8,33 +8,17 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\HtmlResponse;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
-use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerInterface;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
-
-
 class DocModuleController implements ControllerInterface
-
 {
-    /**
-     * @param ServerRequestInterface $request the current request
-     * @return ResponseInterface the response with the content
-     */
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
         $this->mainAction($request);
     }
 
-    /**
-     * @param ServerRequestInterface $request the current request
-     * @return ResponseInterface the response with the content
-     */
     public function mainAction(ServerRequestInterface $request): ResponseInterface
     {
         $view = $this->getStandaloneView();
@@ -43,17 +27,19 @@ class DocModuleController implements ControllerInterface
 
     private function getStandaloneView(): StandaloneView
     {
-        $settings = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('doc');
-
+        $settings = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('doc');
         $docRootPath = $settings['documentationRootPath'] ?? '';
-        if (!$docRootPath) {
+        if(!$docRootPath) {
             throw new \UnexpectedValueException('Documentation root path not set', 1609235458);
         }
 
         $documentationName = $settings['documentationName'] ?? 'Documentation';
 
         $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
-        $uri = $uriBuilder->buildUriFromRoute('ajax_doc_serve', ['path' => $docRootPath]);
+        $uri = $uriBuilder->buildUriFromRoute(
+            'doc_serve',
+            ['path' => $docRootPath, 'segment_01' => 'placeholder']
+        );
 
         $templatePathAndFilename = GeneralUtility::getFileAbsFileName('EXT:doc/Resources/Private/Templates/Module.html');
         $view = GeneralUtility::makeInstance(StandaloneView::class);
@@ -61,12 +47,14 @@ class DocModuleController implements ControllerInterface
         $view->assignMultiple([
             'docRootPath' => $uri,
             'documentationName' => $documentationName,
-            'darkMode' => $settings['darkMode'] ?? false
+            'darkMode' => $settings['darkMode'] ?? false,
+            'themeColor' => $settings['themeColor'] ?? '#1e46b9'
         ]);
+
         return $view;
     }
 
-    public function processRequest(RequestInterface $request): ResponseInterface
+    public function processRequest(ServerRequestInterface $request): ResponseInterface
     {
         $view = $this->getStandaloneView();
         return new HtmlResponse($view->render());

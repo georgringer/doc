@@ -6,3 +6,6 @@ documentationName = Documentation
 
 # cat=basic/enable/103; type=boolean; label=Dark mode:If set, the documentation module uses the dark mode
 darkMode = 0
+
+# cat=basic/enable/104; type=input; label=Theme color:If set, the documentation module uses this color as the theme color
+themeColor = #1e46b9
