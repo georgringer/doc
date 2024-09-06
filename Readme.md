@@ -29,7 +29,7 @@ Download the extension. Use one of the following options:
 Switch to **Install Tool/Settings** and customize the global configuration.
 As seen in the screenshot below, the following configuration options are available:
 
-* `Documentation Root Path`: Define the path to the Markdown files
+* `Documentation Root Path`: Define the path to the Markdown files, use a path like `EXT:sitepackage/Resources/Private/Docs`
 * `Documentation Name`: Documentation name as it appears in the sidebar
 * `Dark mode`: Enable the dark mode
 

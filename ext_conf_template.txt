@@ -1,5 +1,5 @@
 # cat=basic/enable/101; type=input; label=Documentation Root Path:Define the path to the markdown files
-documentationRootPath = /typo3conf/ext/doc/Resources/Private/ExampleDocs/
+documentationRootPath = EXT:doc/Resources/Private/ExampleDocs/
 
 # cat=basic/enable/102; type=input; label=Documentation Name:Documentation name as it appears in the sidebar
 documentationName = Documentation

@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Http\Stream;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -50,7 +51,7 @@ class DocServeController
                 ->withStatus(200);
 
             $mime = MimeType::fromFilename($file);
-            if ($mime === null && StringUtility::endsWith(strtolower($file), '.md')) {
+            if ($mime === null && str_ends_with(strtolower($file), '.md')) {
                 $mime = 'text/markdown';
             }
             if ($mime) {
@@ -66,20 +67,19 @@ class DocServeController
     private function getFile(string $path): string
     {
         $path = PathUtility::getCanonicalPath($path);
-        if (!StringUtility::beginsWith($path, $this->extensionConfiguration['documentationRootPath'] ?? '')) {
+        if (!str_starts_with($path, $this->extensionConfiguration['documentationRootPath'] ?? '')) {
             return '';
         }
-
+        $path = GeneralUtility::getFileAbsFileName($path);
         $fileInfo = pathinfo($path);
         if (!in_array(strtolower($fileInfo['extension']), ['png', 'svg', 'gif', 'md', 'doc', 'docx', 'jpeg', 'jpg'], true)) {
             return '';
         }
 
-        $file = Environment::getPublicPath() . $path;
+        $file = $path;
         if (!is_file($file)) {
             return '';
         }
-
         return $file;
     }
 

@@ -25,9 +25,8 @@
     </head>
     <body>
     <div id="app"></div>
+   {html -> f:format.raw()}
     <script>
-        var docRootPath = '{docRoothPath.path}';
-        var documentationName = '{documentationName}';
         window.$docsify = {
             name: documentationName,
             themeColor: '#1e46b9',
@@ -39,6 +38,8 @@
             autoHeader: false
         }
     </script>
+
+
     <script src="{f:uri.resource(path: 'EXT:doc/Resources/Public/docsify/docsify_4.11.6.js')}"></script>
     <script src="{f:uri.resource(path: 'EXT:doc/Resources/Public/docsify/prism-php.min.js')}"></script>
     </body>
