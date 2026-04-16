@@ -66,16 +66,22 @@ class DocServeController
     private function getFile(string $path): string
     {
         $path = PathUtility::getCanonicalPath($path);
-        if (!StringUtility::beginsWith($path, $this->extensionConfiguration['documentationRootPath'] ?? '')) {
+        if (!str_starts_with($path, $this->extensionConfiguration['documentationRootPath'] ?? '')) {
             return '';
         }
+
 
         $fileInfo = pathinfo($path);
         if (!in_array(strtolower($fileInfo['extension']), ['png', 'svg', 'gif', 'md', 'doc', 'docx', 'jpeg', 'jpg'], true)) {
             return '';
         }
 
-        $file = Environment::getPublicPath() . $path;
+        if (\str_starts_with($path, 'EXT:')) {
+            $file = GeneralUtility::getFileAbsFileName($path);
+        } else {
+            $file = Environment::getPublicPath() . $path;
+        }
+
         if (!is_file($file)) {
             return '';
         }
