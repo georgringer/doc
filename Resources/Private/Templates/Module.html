@@ -25,8 +25,9 @@
     </head>
     <body>
     <div id="app"></div>
-    <script>
-        var docRootPath = '{docRoothPath.path}';
+
+    <script nonce="{f:security.nonce(directive: 'script-src')}">
+        var docRootPath = '{docRootPath}';
         var documentationName = '{documentationName}';
         window.$docsify = {
             name: documentationName,
@@ -37,7 +38,7 @@
             loadNavbar: false,
             subMaxLevel: 0,
             autoHeader: false
-        }
+        };
     </script>
     <script src="{f:uri.resource(path: 'EXT:doc/Resources/Public/docsify/docsify_4.11.6.js')}"></script>
     <script src="{f:uri.resource(path: 'EXT:doc/Resources/Public/docsify/prism-php.min.js')}"></script>
